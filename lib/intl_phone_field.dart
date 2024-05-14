@@ -362,7 +362,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       PhoneNumberUtil phoneUtil = PhoneNumberUtil.instance;
       final initialPhoneNumber = PhoneNumber(
         countryCode: int.parse(
-          _selectedCountry.code,
+          '+${_selectedCountry.dialCode}',
         ),
         // countryCode: '+${_selectedCountry.dialCode}' as int,
         nationalNumber: Int64.parseInt(phoneNumber),
