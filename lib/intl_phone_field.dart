@@ -361,7 +361,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     try {
       PhoneNumberUtil phoneUtil = PhoneNumberUtil.instance;
       final initialPhoneNumber = PhoneNumber(
-        countryCode: _selectedCountry.code as int,
+        countryCode: int.parse(
+          _selectedCountry.code,
+        ),
         // countryCode: '+${_selectedCountry.dialCode}' as int,
         nationalNumber: Int64.parseInt(phoneNumber),
       );
