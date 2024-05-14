@@ -6,20 +6,20 @@ class NumberTooShortException implements Exception {}
 
 class InvalidCharactersException implements Exception {}
 
-class PhoneNumber {
+class Phonenumber {
   String countryISOCode;
   String countryCode;
   String number;
 
-  PhoneNumber({
+  Phonenumber({
     required this.countryISOCode,
     required this.countryCode,
     required this.number,
   });
 
-  factory PhoneNumber.fromCompleteNumber({required String completeNumber}) {
+  factory Phonenumber.fromCompleteNumber({required String completeNumber}) {
     if (completeNumber == "") {
-      return PhoneNumber(countryISOCode: "", countryCode: "", number: "");
+      return Phonenumber(countryISOCode: "", countryCode: "", number: "");
     }
 
     try {
@@ -30,13 +30,13 @@ class PhoneNumber {
       } else {
         number = completeNumber.substring(country.dialCode.length + country.regionCode.length);
       }
-      return PhoneNumber(
+      return Phonenumber(
           countryISOCode: country.code, countryCode: country.dialCode + country.regionCode, number: number);
     } on InvalidCharactersException {
       rethrow;
       // ignore: unused_catch_clause
     } on Exception catch (e) {
-      return PhoneNumber(countryISOCode: "", countryCode: "", number: "");
+      return Phonenumber(countryISOCode: "", countryCode: "", number: "");
     }
   }
 
@@ -56,24 +56,24 @@ class PhoneNumber {
     return countryCode + number;
   }
 
-  static Country getCountry(String phoneNumber) {
-    if (phoneNumber == "") {
+  static Country getCountry(String Phonenumber) {
+    if (Phonenumber == "") {
       throw NumberTooShortException();
     }
 
-    final validPhoneNumber = RegExp(r'^[+0-9]*[0-9]*$');
+    final validPhonenumber = RegExp(r'^[+0-9]*[0-9]*$');
 
-    if (!validPhoneNumber.hasMatch(phoneNumber)) {
+    if (!validPhonenumber.hasMatch(Phonenumber)) {
       throw InvalidCharactersException();
     }
 
-    if (phoneNumber.startsWith('+')) {
+    if (Phonenumber.startsWith('+')) {
       return countries
-          .firstWhere((country) => phoneNumber.substring(1).startsWith(country.dialCode + country.regionCode));
+          .firstWhere((country) => Phonenumber.substring(1).startsWith(country.dialCode + country.regionCode));
     }
-    return countries.firstWhere((country) => phoneNumber.startsWith(country.dialCode + country.regionCode));
+    return countries.firstWhere((country) => Phonenumber.startsWith(country.dialCode + country.regionCode));
   }
 
   @override
-  String toString() => 'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
+  String toString() => 'Phonenumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 }
