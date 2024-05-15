@@ -360,15 +360,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   bool _validatePhoneNumber(String phoneNumber) {
     try {
       PhoneNumberUtil phoneUtil = PhoneNumberUtil.instance;
-      final initialPhoneNumber = PhoneNumber(
-        countryCode: int.parse(
-          '+${_selectedCountry.dialCode}',
-        ),
-        // countryCode: '+${_selectedCountry.dialCode}' as int,
-        nationalNumber: Int64.parseInt(phoneNumber),
-      );
+
+      PhoneNumber parsedphoneNumber = phoneUtil.parse(phoneNumber, _selectedCountry.code);
+
       // Check if the phone number is valid for the specified country code
-      final isValid = phoneUtil.isValidNumber(initialPhoneNumber);
+      final isValid = phoneUtil.isValidNumber(parsedphoneNumber);
       return isValid;
     } catch (e) {
       // Handle errors such as invalid country code
