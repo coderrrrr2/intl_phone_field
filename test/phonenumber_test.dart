@@ -13,23 +13,23 @@ import 'package:intl_phone_field/phone_number.dart';
 void main() {
   group('LocalPhoneNumber', () {
     test('create a phone number', () {
-      LocalPhoneNumber LocalPhoneNumber =
+      LocalPhoneNumber localPhoneNumber =
           LocalPhoneNumber(countryISOCode: "UK", countryCode: "+44", number: "7891234567");
-      String actual = LocalPhoneNumber.completeNumber;
+      String actual = localPhoneNumber.completeNumber;
       String expected = "+447891234567";
 
       expect(actual, expected);
-      expect(LocalPhoneNumber.isValidNumber(), true);
+      expect(localPhoneNumber.isValidNumber(), true);
     });
 
     test('create a Guernsey number', () {
-      LocalPhoneNumber LocalPhoneNumber =
+      LocalPhoneNumber localPhoneNumber =
           LocalPhoneNumber(countryISOCode: "GG", countryCode: "+441481", number: "960194");
-      String actual = LocalPhoneNumber.completeNumber;
+      String actual = localPhoneNumber.completeNumber;
       String expected = "+441481960194";
 
       expect(actual, expected);
-      expect(LocalPhoneNumber.isValidNumber(), true);
+      expect(localPhoneNumber.isValidNumber(), true);
     });
 
     test('look up UK as a country code', () {
@@ -47,19 +47,19 @@ void main() {
     });
 
     test('create with empty complete number', () {
-      LocalPhoneNumber LocalPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "");
-      expect(LocalPhoneNumber.countryISOCode, "");
-      expect(LocalPhoneNumber.countryCode, "");
-      expect(LocalPhoneNumber.number, "");
-      expect(() => LocalPhoneNumber.isValidNumber(), throwsA(const TypeMatcher<NumberTooShortException>()));
+      LocalPhoneNumber localPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "");
+      expect(localPhoneNumber.countryISOCode, "");
+      expect(localPhoneNumber.countryCode, "");
+      expect(localPhoneNumber.number, "");
+      expect(() => localPhoneNumber.isValidNumber(), throwsA(const TypeMatcher<NumberTooShortException>()));
     });
 
     test('create HK  number +85212345678', () {
-      LocalPhoneNumber LocalPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "+85212345678");
-      expect(LocalPhoneNumber.countryISOCode, "HK");
-      expect(LocalPhoneNumber.countryCode, "852");
-      expect(LocalPhoneNumber.number, "12345678");
-      expect(LocalPhoneNumber.isValidNumber(), true);
+      LocalPhoneNumber localPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "+85212345678");
+      expect(localPhoneNumber.countryISOCode, "HK");
+      expect(localPhoneNumber.countryCode, "852");
+      expect(localPhoneNumber.number, "12345678");
+      expect(localPhoneNumber.isValidNumber(), true);
     });
 
     test('Number is too short number +8521234567', () {
@@ -74,19 +74,19 @@ void main() {
     });
 
     test('create UK LocalPhoneNumber from +447891234567', () {
-      LocalPhoneNumber LocalPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "+447891234567");
-      expect(LocalPhoneNumber.countryISOCode, "GB");
-      expect(LocalPhoneNumber.countryCode, "44");
-      expect(LocalPhoneNumber.number, "7891234567");
-      expect(LocalPhoneNumber.isValidNumber(), true);
+      LocalPhoneNumber localPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "+447891234567");
+      expect(localPhoneNumber.countryISOCode, "GB");
+      expect(localPhoneNumber.countryCode, "44");
+      expect(localPhoneNumber.number, "7891234567");
+      expect(localPhoneNumber.isValidNumber(), true);
     });
 
     test('create Guernsey LocalPhoneNumber from +441481960194', () {
-      LocalPhoneNumber LocalPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "+441481960194");
-      expect(LocalPhoneNumber.countryISOCode, "GG");
-      expect(LocalPhoneNumber.countryCode, "441481");
-      expect(LocalPhoneNumber.number, "960194");
-      expect(LocalPhoneNumber.isValidNumber(), true);
+      LocalPhoneNumber localPhoneNumber = LocalPhoneNumber.fromCompleteNumber(completeNumber: "+441481960194");
+      expect(localPhoneNumber.countryISOCode, "GG");
+      expect(localPhoneNumber.countryCode, "441481");
+      expect(localPhoneNumber.number, "960194");
+      expect(localPhoneNumber.isValidNumber(), true);
     });
 
     test('create alpha character in  LocalPhoneNumber from +44abcdef', () {

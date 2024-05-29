@@ -57,7 +57,7 @@ class LocalPhoneNumber {
   }
 
   static Country getCountry(String localPhoneNumber) {
-    if (LocalPhoneNumber == "") {
+    if (localPhoneNumber == "") {
       throw NumberTooShortException();
     }
 
